@@ -20,6 +20,7 @@ var userSchema = new Schema({
   },
   {
     toObject: { getters: true },
+    usePushEach: true,
     timestamps: {
       createdAt: 'createdDate',
       updatedAt: 'updatedDate'
