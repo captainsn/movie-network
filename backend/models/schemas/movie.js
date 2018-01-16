@@ -33,4 +33,4 @@ movieSchema.pre('save', function(callback) {
 
 var Movie= mongoose.model('Movie', movieSchema);
 
-module.exports = User;
+module.exports = Movie;

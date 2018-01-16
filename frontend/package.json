@@ -1,7 +1,7 @@
 {
   "name": "web-vanillajs-starter-app",
   "version": "0.0.0",
-  "author": "HSA DEV <dev@hsa.net>",
+  "author": "Sandip Nirmel",
   "private": true,
   "scripts": {
     "build": "npm install && grunt publish",

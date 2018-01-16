@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "build": "npm install",
-    "mongo": "mongod -f ./models/mongod.conf & echo $! > .mongo_pid",
-    "dev": "START cd npm run mongo & nodemon api.js",
+    "mongo": "/Users/17SandipN/mongodb/bin/mongod -f ./models/mongod.conf & echo $! > .mongo_pid",
+    "dev": "npm run mongo & nodemon api.js",
     "mongo-stop": "kill $(cat .mongo_pid) && rm .mongo_pid",
     "start": "nodemon api.js"
   },
@@ -19,12 +19,9 @@
     "jwt-simple": "^0.5.1",
     "mongoose": "^4.12.4",
     "morgan": "~1.6.1",
-<<<<<<< HEAD
     "nodemon": "^1.14.11",
-=======
     "name-to-imdb": "^1.6.0",
     "nodemon": "^1.12.1",
->>>>>>> 42f5ae12b14e73d1b59ddeb116a2ff3541c03da9
     "serve-favicon": "~2.3.0"
   }
 }
