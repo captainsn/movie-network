@@ -4,8 +4,18 @@ const bcrypt = require('bcrypt-nodejs');
 const validator = require('email-validator');
 
 var userSchema = new Schema({
+    name: String,
     email: {type: String, unique: true, sparse: true, trim: true},
     hash: String,
+    following: [String],
+    playlists: [{
+        playlist: {
+           title: String,
+           description: String,
+           movies: [String],
+           likes: Number
+        }
+    }],
     token: String
   },
   {

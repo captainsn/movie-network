@@ -1,5 +1,0 @@
-*/node_modules
-/backend/models/config.js
-/backend/models/mongod.conf
-/backend/package.json
-.DS_Store
