@@ -12,10 +12,7 @@ const users = require('../controllers/users')
 */
 router.route('/users')
   .post(users.createUser)
-<<<<<<< HEAD
-=======
   /*.get(auth.validateUser, users.getUserById)*/
->>>>>>> 42f5ae12b14e73d1b59ddeb116a2ff3541c03da9
   .get(users.getAllUsers)
   .put(auth.validateUser, users.updateUser)
   .delete(auth.validateUser, users.deleteUser)
@@ -25,6 +22,12 @@ router.route('/users')
 */
 router.route('/auth/login')
   .post(auth.loginUser);
+
+/*
+* Following Users
+*/
+router.route('/users/follow')
+	.post(users.followUser)
 
 // expose routes through router object
 module.exports = router;

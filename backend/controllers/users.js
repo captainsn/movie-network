@@ -75,3 +75,17 @@ exports.deleteUser = (req, res, next) => {
     .then(user => res.sendStatus(200))
     .catch(next);
 }
+
+exports.followUser = (req, res, next) => {
+    const userPromises = [
+        User.findById(req.body.currentUserId),
+        User.findById(req.body.userId)
+    ]
+    Promise.all(userPromises)
+    .then((users) => {
+        const currentUser = users[0]
+        const followedUser = users[1]
+        currentUser.following.push(followedUser)
+        currentUser.markModified('following')
+    }).catch(next)
+}
