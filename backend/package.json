@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "npm install",
-    "mongo": "/Users/17SandipN/mongodb/bin/mongod -f ./models/mongod.conf & echo $! > .mongo_pid",
+    "mongo": "mongod -f ./models/mongod.conf & echo $! > .mongo_pid",
     "dev": "npm run mongo & nodemon api.js",
     "mongo-stop": "kill $(cat .mongo_pid) && rm .mongo_pid",
     "start": "nodemon api.js"
