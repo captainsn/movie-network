@@ -1,4 +1,5 @@
 @require "helpers"
+@require "table"
 
 #navbar
   position relative // as opposed to relative, fixed, etc
@@ -7,7 +8,7 @@
   left 0
   width calc(100% - 40px)
   padding 20px
-  background blue
+  background #379E51;
   
 #navbar span
   color white
@@ -20,6 +21,9 @@
   text-align center
 #nb-items *
   padding-left 20px
+  
+#nb-items a 
+    text-decoration none
 
 .error-message
     visibility hidden

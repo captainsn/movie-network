@@ -24,6 +24,28 @@ function submitUser() {
 
 }
 
+function submitLogin() {
+ var data = {
+    email: form.email.value,
+    password: form.password.value
+  }
+  fetch('/login', {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
+  }).then(function(res) {
+    if (!res.ok) { alert('ERROR') }
+    res.json()
+    .then(function(data) {
+      alert(JSON.stringify(data))
+      localStorage.token = data.token
+      window.location.href ='/account'
+    })
+  }).catch(submitError)
+}
+
 /*=============================================
 =            Form Submit Callbacks            =
 =============================================*/
