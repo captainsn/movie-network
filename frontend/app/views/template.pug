@@ -1,11 +1,20 @@
 doctype html
 html
   head
-    title= title || "CHANGE TITLE IN TEMPLATE.PUG"
+    title= title || "CINEFY"
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='/js/fetch.js')
+  #navbar
+    span CINEFY
+    #nb-items
+        a(href='/')
+            span browse
+        
   body
     block content
     script(src='/js/script.min.js')
     if token
         script localStorage.token = "#{token}"
+    block postScript
+    if dev
+        script(src='//localhost:10000/livereload.js')

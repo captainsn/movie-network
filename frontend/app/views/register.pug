@@ -1,0 +1,18 @@
+extends template
+
+block content
+    #js-error-message.error-message
+    .login-page
+      .form
+        .login-form
+            .lf-item
+                input(type="text" placeholder="username")
+                input(type="text" placeholder="username")
+                input(type='email' name='email' placeholder='example@gmail.com') 
+                input(type='password' name='password' placeholder='******')
+                input(type='password' name='confirm' placeholder='******') 
+                button#submit(type='button' onclick='submitUser()') Register
+
+    .modal#js-success
+        .modal-content
+            h2 Thank you for registering!
