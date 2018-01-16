@@ -1,5 +1,7 @@
-*/node_modules/
-*/package.json
+backend/node_modules/
+frontend/node_modules/
+frontend/package.json
+backend/package.json
 /backend/startServer.bat
 /backend/models/config.js
 /backend/models/mongod.conf
