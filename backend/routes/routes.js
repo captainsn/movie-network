@@ -12,7 +12,7 @@ const users = require('../controllers/users')
 */
 router.route('/users')
   .post(users.createUser)
-  .get(auth.validateUser, users.getUserById)
+  .get(users.getAllUsers)
   .put(auth.validateUser, users.updateUser)
   .delete(auth.validateUser, users.deleteUser)
 
