@@ -1,0 +1,98 @@
+@require "helpers"
+
+text-color = #000 
+mobile-width = 600px
+
+body
+  margin 0
+  padding 0
+  font-family 'Futura', sans-serif
+  background lightgreen
+
+#navbar
+  position relative // as opposed to relative, fixed, etc
+  margin-bottom 50px
+  top 0
+  left 0
+  width calc(100% - 40px)
+  padding 20px
+  background mediumseagreen
+  
+#navbar span
+  color white
+  font-size 2em
+  color white
+  font-weight bold 
+  text-transform uppercase
+  font-family 'Roboto', sans-serif
+
+#nb-items
+  float right
+#nb-items *
+  padding-left 20px
+  
+.error-message
+    visibility hidden
+    color red
+    font-weight bold
+    text-align left
+    padding 1rem 0
+.modal
+    display none
+    position fixed
+    left 0
+    top 0
+    z-index 100
+    width 100%
+    height 100%
+    overflow auto
+    background-color #000
+    background-color rgba(0, 0, 0, .5)
+.modal-content
+    max-width 90%
+    margin 10% auto
+    padding 2rem
+    border 1px solid #888
+    background-color white
+    border-radius 5px
+    text-align center
+
+.form-box
+  position relative
+  width 50%
+  margin 0px 25%
+  box-shadow 0px 0px 20px #CCC
+  padding 30px
+  background-color white
+
+.fb-item
+  margin-bottom 20px
+  outline none
+.fb-item input
+  width 100%
+  font-size 1.2em
+  font-family 'Futura', sans-serif
+  color black
+
+#submit
+
+  bottom 0 
+  left 0 
+  width 50%
+  background lightgreen
+  padding 10px
+  text-align center
+  color white
+  font-size 1.4em
+  font-family 'Futura', sans-serif
+  text-transform upper
+  border none
+#submit:hover
+  opacity 0.8
+  cursor pointer
+
+
+
+
+
+

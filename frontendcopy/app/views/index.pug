@@ -1,0 +1,33 @@
+extends template
+
+block content
+    #navbar
+        span Cinefy
+        #nb-items
+            a(href='/')
+                span browse
+            #nb-profpic
+    form          
+        .form-box(style='text-align:center')
+            h2 Create an account.
+            .fb-item
+                span 
+                br
+                input(type='email' name='email' placeholder='example@gmail.com') 
+            .fb-item
+                span
+                br
+                input(type='password' name='password' placeholder='******')
+            .fb-item
+                span 
+                br
+                input(type='password' name='confirm' placeholder='******') 
+            button#submit(type='button' onclick='submitUser()') Register
+
+    .modal#js-success
+        .modal-content
+            h2 Thank you for registering!
+
+
+
+

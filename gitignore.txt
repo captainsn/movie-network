@@ -1,0 +1,5 @@
+*/node_modules
+/backend/models/config.js 
+/backend/models/mongod.conf
+/Users/samanthacarrillo/movie-network/backend/models/mongod.conf
+/Users/samanthacarrillo/movie-network/backend/models/config.js
