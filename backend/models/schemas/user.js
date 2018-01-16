@@ -5,6 +5,7 @@ const validator = require('email-validator');
 
 var userSchema = new Schema({
     name: String,
+    username: {type: String, unique: true},
     email: {type: String, unique: true, sparse: true, trim: true},
     hash: String,
     following: [String],
@@ -35,7 +36,8 @@ userSchema.pre('save', function(callback) {
         return callback(new Error('Missing password'));
     if (this.isModified('hash'))
         this.hash = bcrypt.hashSync(this.hash);
-
+    if (!this.username)
+        return callback(new Error('Missing username'))
     if (this.email && !validator.validate(this.email))
         return callback(new Error('Invalid email'));
 

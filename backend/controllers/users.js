@@ -23,6 +23,8 @@ exports.createUser = (req, res, next) => {
     if (req.body.hash)
         userData.hash = req.body.hash;
 
+    if (req.body.username)
+        userData.username = req.body.username
     // create new user
     const newUser = new User(userData);
     newUser.save()
@@ -80,7 +82,7 @@ exports.followUser = (req, res, next) => {
     let currentUser = ''
     let followedUser = ''
     const userPromises = [
-        User.findById(req.body.currentUserId)
+        User.findById(req.params.currentUserId)
         .then((user) => {
             currentUser = user
         }).catch(next),
@@ -91,6 +93,11 @@ exports.followUser = (req, res, next) => {
     ]
     Promise.all(userPromises)
     .then((users) => {
+        if (currentUser.following.includes(String(followedUser._id))) {
+            return res.status(400).send('User already followed!')
+        }
+        console.log(currentUser.following.includes(followedUser._id))
+        console.log(currentUser.following)
         currentUser.following.push(followedUser._id)
         currentUser.markModified('following')
         currentUser.save()
