@@ -1,0 +1,14 @@
+extends template
+
+block content
+    .login-page
+      .form
+        .login-form
+            .lf-item
+                input(type="text" placeholder="username")
+                input(type="password" placeholder="password")
+                button(type='button' onclick='submitLogin()') Login
+                p
+                    .message
+                        span Not registered? 
+                        a(href='google.com') Create an account
