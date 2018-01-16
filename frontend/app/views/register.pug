@@ -2,16 +2,22 @@ extends template
 
 block content
     #js-error-message.error-message
-    .login-page
-      .form
-        .login-form
-            .lf-item
-                input(type="text" placeholder="username")
-                input(type="text" placeholder="username")
+    form          
+        .form-box(style='text-align:center')
+            h2 Register
+            .fb-item
+                span Email
+                br
                 input(type='email' name='email' placeholder='example@gmail.com') 
+            .fb-item
+                span Password
+                br
                 input(type='password' name='password' placeholder='******')
+            .fb-item
+                span Confirm Password
+                br
                 input(type='password' name='confirm' placeholder='******') 
-                button#submit(type='button' onclick='submitUser()') Register
+            button#submit(type='button' onclick='submitUser()') Register
 
     .modal#js-success
         .modal-content
