@@ -5,3 +5,4 @@
 /backend/startServer.bat
 /backend/models/config.js
 /backend/models/mongod.conf
+.DS_Store
