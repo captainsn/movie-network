@@ -1,2 +1,4 @@
-test.js
-test2.js
+*/node_modules
+/backend/models/config.js
+/backend/models/mongod.conf
+/backend/package.json

@@ -1,11 +1,11 @@
 {
-  "name": "api-starter-app",
+  "name": "movie-network",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "build": "npm install",
     "mongo": "mongod -f ./models/mongod.conf & echo $! > .mongo_pid",
-    "dev": "npm run mongo & nodemon api.js",
+    "dev": "START cd npm run mongo & nodemon api.js",
     "mongo-stop": "kill $(cat .mongo_pid) && rm .mongo_pid",
     "start": "nodemon api.js"
   },
@@ -19,6 +19,7 @@
     "jwt-simple": "^0.5.1",
     "mongoose": "^4.12.4",
     "morgan": "~1.6.1",
+    "name-to-imdb": "^1.6.0",
     "nodemon": "^1.12.1",
     "serve-favicon": "~2.3.0"
   }
