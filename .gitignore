@@ -2,3 +2,6 @@
 /backend/models/config.js
 /backend/models/mongod.conf
 /backend/package.json
+/backend/.mongo_pid
+/package-lock.json
+/backend/startServer.bat
