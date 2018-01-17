@@ -26,6 +26,9 @@ router.get('/account', (req, res, next) => {
     return res.render('account');
 });
 
+router.get('/browse', (req, res, next) => {
+    return res.render('browse');
+});
 
 /*=============================================
 =            Routes for playlists
