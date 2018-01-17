@@ -9,14 +9,14 @@ var userSchema = new Schema({
     email: {type: String, unique: true, sparse: true, trim: true},
     hash: String,
     following: [String],
-    playlists: [{
-        playlist: {
+    playlists: [
+		{
            title: String,
            description: String,
            movies: [String],
            likes: Number
         }
-    }],
+    ],
     token: String
   },
   {

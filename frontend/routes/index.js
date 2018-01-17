@@ -26,12 +26,9 @@ router.get('/account', (req, res, next) => {
     return res.render('account');
 });
 
-<<<<<<< HEAD
 router.get('/browse', (req, res, next) => {
     return res.render('browse');
 });
-
-=======
 
 /*=============================================
 =            Routes for playlists
@@ -46,7 +43,6 @@ router.get('/create', (req, res, next) => {
 =            Routes for backend requests
 =============================================*/
 
->>>>>>> 7f83af60c25bdd00b91de164cb29ee9360f256e8
 router.post('/register', (req, res, next) => {
   request.post({
       url: config.apiUrl + '/users',
