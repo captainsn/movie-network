@@ -54,7 +54,7 @@ router.route('/users/:currentUserId/playlist')
 	.post(users.createPlaylist)
 	
 router.route('/users/:currentUserId/id/:playlistId/playlist')
-	//.get(users.getPlaylistById)
+	.get(users.getPlaylistById)
 	.post(users.addToPlaylist)
 // expose routes through router object
 module.exports = router;
