@@ -2,6 +2,75 @@ const User = require('../models/schemas/user');
 const config = require('../models/config');
 const jwt = require('jwt-simple')
 
+exports.getAllPlaylists = (req, res, next) => {
+	User.findById(req.params.currentUserId, (err, user) => {
+		if (err) return next(err)
+    	if (!user) return res.status(404).send('No user with id: ' + req.params.currentUserId)
+		return res.json({
+                	userId: user.playlists
+            	})
+	})
+}
+
+
+exports.createPlaylist = (req, res, next) => {
+	userId = req.params.currentUserId
+	name = req.body.playlistName
+	description = req.body.description
+	User.findById(userId)
+		.then((user) => {
+			let newPlaylist = {
+				title: name,
+				description: description,
+				movies: [],
+				likes: 0
+			}
+			user.playlists.push(newPlaylist)
+			user.markModified('playlists')
+			user.save()
+			.then(user => {
+            	return res.json({
+                	userId: user.playlists
+            	})
+        	}).catch(next)
+		}).catch(next)
+}
+
+exports.getPlaylistById = (req, res, next) => {
+	userId = req.params.currentUserId
+	plId = req.params.playlistId
+	//console.log(userId)
+	//console.log(plId)
+	User.findById(userId)
+		.then((user) => {
+			playlist = user.playlists.find( function(playlist){
+				return playlist._id == plId
+			})
+			//console.log(JSON.stringify(playlist))
+			return res.json({
+				pl: playlist
+			})
+		}).catch(next)
+}
+
+exports.addToPlaylist = (req, res, next) => {
+	userId = req.params.currentUserId
+	plId = req.params.playlistId
+	movieId = req.body.movieId
+	User.findById(userId)
+		.then((user) => {
+			playlist = user.playlists.find(function(pl) {return pl.id === plId})
+			playlist.movies.push(movieId)
+			user.markModified('playlists')
+			user.save()
+			.then(user => {
+            	return res.json({
+                	userId: user.playlists
+            	})
+        	}).catch(next)
+		}).catch(next)
+	}
+
 /*
 * C.R.U.D. routes
 */
@@ -18,6 +87,8 @@ exports.createUser = (req, res, next) => {
     }
 
     // check if password was provided
+    if (req.body.name)
+    	userData.name = req.body.name;
     if (req.body.password)
         userData.hash = req.body.password;
     if (req.body.hash)
@@ -59,23 +130,27 @@ exports.getAllUsers = (req, res, next) => {
 }
 
 exports.getUserById = (req, res, next) => {
-    User.findById(req.body.id).then(user => {
-        if (!user) return res.status(404).send('Could not find user: invalid id');
-        return res.json(user)
-    }).catch(next);
+    User.findById(req.params.userId, (err, user) => {
+    if (err) return next(err)
+    if (!user) return res.status(404).send('No user with id: ' + req.params.currentUserId)
+    return res.json(user)    
+  })
 };
 
 exports.updateUser = (req, res, next) => {
-    User.findOneAndUpdate(req.body.id, req.body).then(user => {
-        if (!user) return res.status(404).send('No user with that ID');
-        return res.sendStatus(200);
-    }).catch(next);
+    User.findOneAndUpdate({ _id: req.params.userId }, req.body, {}, (err, user) => {
+    if (err) return next(err)
+    if (!user) return res.status(404).send('Could not find user: ' + req.params.currentUserId)
+    return res.sendStatus(200)
+  })
 };
 
 exports.deleteUser = (req, res, next) => {
-    User.findByIdAndRemove(req.body.id)
-    .then(user => res.sendStatus(200))
-    .catch(next);
+    User.findByIdAndRemove(req.params.userId, (err, user) => {
+    if (err) return next(err)
+    if (!user) return res.status(404).send('Could not find user ' + req.params.currentUserId)
+    return res.json(user)
+  })
 }
 
 exports.followUser = (req, res, next) => {
