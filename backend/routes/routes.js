@@ -33,7 +33,7 @@ router.route('/movies/:movieId/id')
   .get(movies.getMovieById)
   .put(movies.updateMovie)
   .delete(movies.deleteMovie)
-  
+
 /*
 * Auth Routes
 */
