@@ -10,7 +10,7 @@ var userSchema = new Schema({
     hash: String,
     following: [String],
     playlists: [
-        playlist: {
+		{
            title: String,
            description: String,
            movies: [String],
