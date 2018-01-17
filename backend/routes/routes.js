@@ -45,6 +45,16 @@ router.route('/auth/login')
 */
 router.route('/users/:currentUserId/follow')
 	.post(users.followUser)
-
+	
+/*
+* 
+*/
+router.route('/users/:currentUserId/playlist')
+	//.get(movies.getAllPlaylists)
+	.post(users.createPlaylist)
+	
+router.route('/users/:currentUserId/id/:playlistId/playlist')
+	//.get(movies.getPlaylistById)
+	.post(users.addToPlaylist)
 // expose routes through router object
 module.exports = router;
