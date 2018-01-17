@@ -50,11 +50,11 @@ router.route('/users/:currentUserId/follow')
 * 
 */
 router.route('/users/:currentUserId/playlist')
-	//.get(movies.getAllPlaylists)
+	.get(users.getAllPlaylists)
 	.post(users.createPlaylist)
 	
 router.route('/users/:currentUserId/id/:playlistId/playlist')
-	//.get(movies.getPlaylistById)
+	//.get(users.getPlaylistById)
 	.post(users.addToPlaylist)
 // expose routes through router object
 module.exports = router;
