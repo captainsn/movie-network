@@ -19,6 +19,10 @@ router.get('/account', (req, res, next) => {
     return res.render('account');
 });
 
+router.get('/browse', (req, res, next) => {
+    return res.render('browse');
+});
+
 router.post('/register', (req, res, next) => {
   request.post({
       url: config.apiUrl + '/users',
