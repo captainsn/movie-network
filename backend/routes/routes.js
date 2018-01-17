@@ -43,7 +43,7 @@ router.route('/auth/login')
 /*
 * Following Users
 */
-router.route('/users/follow')
+router.route('/users/:currentUserId/follow')
 	.post(users.followUser)
 
 // expose routes through router object
