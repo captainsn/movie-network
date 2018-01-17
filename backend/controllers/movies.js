@@ -68,14 +68,23 @@ exports.deleteMovie = (req, res, next) => {
 }
 
 exports.makeMovieByImdb = (req, res, next) => {
-	imdb({ name: req.params.movieName }, function(err, res, inf) {
+	let temp = { title: req.params.movieName, trailer: "null"}
+	imdb({ name: temp.title }, function(err, res2, inf) {
 		if (err) return next(err)
-		const code = res
+		const code = res2
 		request.get({
 			url: 'https://api.themoviedb.org/3/movie/' + code + "?api_key=" + key + "&language=en-US"
 		}, (err, response, movie) => {
 			if (err) return next(err)
-			console.log(movie)
+			temp.link = "www.imdb.com/title/" + code
+			movie = JSON.parse(movie)
+			temp.genre = movie.genres[0].name
+
+			const newMovie = new Movie(temp)
+			newMovie.save((err) => {
+				if (err) return next(err)
+				return res.json(newMovie)
+			})
 		})
 	})
 }
