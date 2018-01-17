@@ -33,7 +33,7 @@ router.route('/movies/:movieId/id')
   .get(movies.getMovieById)
   .put(movies.updateMovie)
   .delete(movies.deleteMovie)
-  
+
 /*
 * Auth Routes
 */
@@ -43,8 +43,18 @@ router.route('/auth/login')
 /*
 * Following Users
 */
-router.route('/users/follow')
+router.route('/users/:currentUserId/follow')
 	.post(users.followUser)
-
+	
+/*
+* 
+*/
+router.route('/users/:currentUserId/playlist')
+	//.get(movies.getAllPlaylists)
+	.post(users.createPlaylist)
+	
+router.route('/users/:currentUserId/id/:playlistId/playlist')
+	//.get(movies.getPlaylistById)
+	.post(users.addToPlaylist)
 // expose routes through router object
 module.exports = router;
