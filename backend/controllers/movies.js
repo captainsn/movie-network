@@ -1,6 +1,9 @@
 const Movie = require('../models/schemas/movie');
 const config = require('../models/config');
 const jwt = require('jwt-simple')
+const request = require('request')
+const imdb = require('name-to-imdb')
+const key = "4948150e13c1a8f29e95504275e92dda"
 
 /*
 * C.R.U.D. routes
@@ -63,3 +66,29 @@ exports.deleteMovie = (req, res, next) => {
 		return res.json(movie)
 	})
 }
+
+exports.makeMovieByImdb = (req, res, next) => {
+	imdb({ name: req.params.movieName }, function(err, res, inf) {
+		if (err) return next(err)
+		const code = res
+		request.get({
+			url: 'https://api.themoviedb.org/3/movie/' + code + "?api_key=" + key + "&language=en-US"
+		}, (err, response, movie) => {
+			if (err) return next(err)
+			console.log(movie)
+		})
+	})
+}
+
+
+/*request.get('/movie', (req, res, next) => {
+	request.get({
+		url: 'moviedb'
+	}, (err, response, movie) => {
+		if (err) return next(err)
+		res.render('movie', {
+			title: movie.title,
+			
+		})
+	})
+})*/
