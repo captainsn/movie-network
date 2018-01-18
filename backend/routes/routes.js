@@ -34,6 +34,14 @@ router.route('/movies/:movieId/id')
   .put(movies.updateMovie)
   .delete(movies.deleteMovie)
 
+
+// Get movie poster link by movie ID
+router.route('/movies/:movieId/poster')
+  .get(movies.getMoviePoster)
+
+router.route('/movies/posters')
+  .get(movies.getAllPosters)
+
 /*
 * Auth Routes
 */
@@ -45,7 +53,6 @@ router.route('/auth/login')
 */
 router.route('/users/:currentUserId/follow')
 	.post(users.followUser)
-
 
 router.route('/movie')
   .post(movies.makeMovieByImdb)
