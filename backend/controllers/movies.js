@@ -73,28 +73,23 @@ exports.deleteMovie = (req, res, next) => {
 //Need to get promises to work
 exports.makeMovieByImdb = (req, res, next) => {
 
-	console.log("1")
-	let temp = { title: req.body.movieName, trailer: "null"}
+	let temp = { title: req.body.title, trailer: "null"}
 
 	imdb({ name: temp.title }, function(err, res2, inf) {
-		console.log("2")
 		if (err) return next(err)
 		const code = res2
 		temp.link = "http://www.imdb.com/title/" + code
 		request.get({
 			url: 'https://api.themoviedb.org/3/movie/' + code + "?api_key=" + key + "&language=en-US"
 		}, (err, response, movie) => {
-			console.log("3")
 			if (err) return next(err)
 			request(temp.link, (err, response, body) => {
 				let handler = new htmlparser.DefaultHandler(function (error, dom) {
-					console.log("4")
 					if (error) return next(error)
 				});
 				let parser = new htmlparser.Parser(handler);
 				parser.parseComplete(body);
 
-				console.log("5")
 				let poster = select(handler.dom, 'div.poster')
 				let link = select(poster, 'img')[0].attribs.src + ''
 				temp.poster = link
@@ -110,5 +105,21 @@ exports.makeMovieByImdb = (req, res, next) => {
 				})
 			})
 		})
+	})
+}
+
+exports.getMoviePoster = (req, res, next) => {
+	Movie.findById(req.params.movieId, (err, movie) => {
+		if (err) return next(err)
+		if (!movie) return res.status(404).send('No movie with id: ' + req.params.movieId)
+		return res.json(movie.poster)
+	})
+}
+
+exports.getAllPosters = (req, res, next) => {
+	Movie.find({}, (err, movies) => {
+		if (err) return next(err)
+		const temp = movies.map(movie => movie.poster)
+		return res.json(temp)
 	})
 }
