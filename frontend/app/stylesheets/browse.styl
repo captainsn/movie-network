@@ -1,34 +1,4 @@
-/*table
-    width 100%
-    margin 0 auto
-    margin-top 5em
-    border-collapse collapse
-
-td
-    width 30%
-    border 6px solid #222
-    border-spacing 0
-    &::after
-        content ''
-        display block
-        margin-top 100%
-    &:first-of-type
-        border-left-color black
-        border-top-color black
-    &:nth-of-type(2)
-        border-top-color black
-    &:nth-of-type(3)
-        border-right-color black
-        border-top-color black
-
-tr
-    &:nth-of-type(3)
-        td
-            border-bottom-color black
-
-#container
-    max-width 600px
-    margin 0 auto*/
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 body, html
     height 100%
@@ -44,22 +14,33 @@ body, html
     flex-flow row wrap
     -ms-flex-pack distribute
     justify-content space-around
-    background #76b852
-    padding-bottom 10px
+    -moz-osx-font-smoothing: grayscale;  
+    background: #76b852; /* fallback for old browsers */
+    background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+    background: -moz-linear-gradient(right, #76b852, #8DC26F);
+    background: -o-linear-gradient(right, #76b852, #8DC26F);
+    background: linear-gradient(to left, #76b852, #8DC26F);
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;        padding-bottom 10px
 
 button
-    font 1.3rem 'Futura', sans-serif
-    padding 10px
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #379E51;
+    width: 25%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
     margin-top 10px
     cursor pointer
     border none
-    background white
-    color black
-    font-family 'Futura', sans-serif
     -webkit-transition background 0.3s ease-in-out
     transition background 0.3s ease-in-out
     &:hover
-        background lightgreen
+        background paleturquoise
 
 ul
     list-style none
@@ -76,7 +57,14 @@ ul
     -webkit-box-align center
     -ms-flex-align center
     align-items center
-    background #76b852
+    background: #76b852; /* fallback for old browsers */
+    background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+    background: -moz-linear-gradient(right, #76b852, #8DC26F);
+    background: -o-linear-gradient(right, #76b852, #8DC26F);
+    background: linear-gradient(to left, #76b852, #8DC26F);
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;    
     padding-top 20px
 
 .sortable
@@ -87,10 +75,17 @@ ul
     -webkit-box-direction normal
     -ms-flex-flow column nowrap
     flex-flow column nowrap
-    padding-bottom 20px
+    padding-top 90px
+    padding-bottom 90px
     width calc(25% - 40px)
+    height calc(25% - 40px)
     -webkit-transition opacity 0.3s ease-in-out
     transition opacity 0.3s ease-in-out
+    // 256x256
+    background-image: url(https://pbs.twimg.com/profile_images/2623354572/0yhu74zyggb7n34279jm.jpeg)
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;  
 
 .hidden
     opacity 0
@@ -98,20 +93,78 @@ ul
 .fake-image, .rating
     width 100%
     text-align center
-    background white
+    border-radius: 15px
 .fake-image
     font-size 7rem
-    color #76b852
     padding-top 10px
 
 .rating
-    font 1.7rem "Futura", sans-serif
-    color black
-
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    color white
+    
 @media only screen and (max-width: 768px)
-	.sortable
-	        width calc(50% - 20px)
+    .sortable
+            width calc(50% - 20px)
 
 @media only screen and (max-width: 480px)
     .sortable
         width 100%
+
+form
+    width 10px
+    height 40px
+    margin 10px auto 0
+    position relative
+    .submit
+        background lightgreen
+        cursor pointer
+        box-shadow 0px 5px #8DC26F,
+        0px 8px 10px rgba(0, 0, 0, 0.5)
+    #search
+        -webkit-appearance none
+        height 35px
+        width 0
+        position absolute
+        padding 0
+        opacity 0
+        border none
+        outline none
+        position absolute
+        right 35px
+        box-shadow 0px 5px #8DC26F,
+        0px 8px 10px rgba(0, 0, 0, 0.5)
+
+#submit
+    display none
+
+form .icon, form .submit
+    width 35px
+    height 35px
+    background #d75813
+    display block
+    position absolute
+    top 0
+    right 0
+    box-shadow 0px 5px #8DC26F,
+        0px 8px 10px rgba(0, 0, 0, 0.5)
+
+form .icon:after, form .submit:after
+    content ''
+    position absolute
+    width 8px
+    height 8px
+    border 2px solid white
+    border-radius 50%
+    left 10px
+    top 9px
+
+form .icon:before, form .submit:before
+    content ''
+    position absolute
+    height 8px
+    width 2px
+    background white
+    transform rotate(-35deg)
+    top 19px
+    left 21px  

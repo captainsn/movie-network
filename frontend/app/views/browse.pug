@@ -10,6 +10,7 @@ extends template
 						td-//
 
 block content 
+	block content 
 	- var ratingAry = [{"rating":"1"},{"rating":"2"},{"rating":"3"},{"rating":"4"},{"rating":"5"},{"rating":"6"},{"rating":"7"},{"rating":"8"},{"rating":"9"},{"rating":"10"},{"rating":"0"},{"rating":"11"}]
 	- var newAry = ratingAry.slice(0);
 	- ratingAry.sort(function(a, b){
@@ -19,12 +20,16 @@ block content
 		- ratingAry[i].order = i
 	- }
 	.button-wrapper
-		button#submit(type='button' onclick='createPlaylist()') Create Playlist
+		button#accountsubmit(type='button' onclick="location.href = '/create'") Create Playlist
 	.button-wrapper
-		button#default Relevance
-		button#high-to-low Highest to Lowest
-		button#low-to-high Lowest to Highest
-		button#default Your Friends
+		button#high-to-low Top
+		button#low-to-high New
+		button#default Following
+	form.search(action='')
+			input#submit(value='', type='submit')
+			label.submit(for='submit')
+			a.icon(href='javascript: void(0)')
+			input#search(type='search', name='Search', placeholder='Search')
 	ul#grid
 		each val, index in newAry
 			li(class="sortable", data-order=val.order,data-default=index)
