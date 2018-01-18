@@ -7,7 +7,8 @@ var movieSchema = new Schema({
     title: String,
     genre: String,
     trailer: String,
-    link: String
+    link: String,
+    poster: String
   },
   {
     toObject: { getters: true },

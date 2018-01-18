@@ -4,6 +4,9 @@ const jwt = require('jwt-simple')
 const request = require('request')
 const imdb = require('name-to-imdb')
 const key = "4948150e13c1a8f29e95504275e92dda"
+const select = require('soupselect').select
+
+var htmlparser = require("htmlparser")
 
 /*
 * C.R.U.D. routes
@@ -67,37 +70,45 @@ exports.deleteMovie = (req, res, next) => {
 	})
 }
 
+//Need to get promises to work
 exports.makeMovieByImdb = (req, res, next) => {
-	let temp = { title: req.params.movieName, trailer: "null"}
+
+	console.log("1")
+	let temp = { title: req.body.movieName, trailer: "null"}
+
 	imdb({ name: temp.title }, function(err, res2, inf) {
+		console.log("2")
 		if (err) return next(err)
 		const code = res2
+		temp.link = "http://www.imdb.com/title/" + code
 		request.get({
 			url: 'https://api.themoviedb.org/3/movie/' + code + "?api_key=" + key + "&language=en-US"
 		}, (err, response, movie) => {
+			console.log("3")
 			if (err) return next(err)
-			temp.link = "www.imdb.com/title/" + code
-			movie = JSON.parse(movie)
-			temp.genre = movie.genres[0].name
+			request(temp.link, (err, response, body) => {
+				let handler = new htmlparser.DefaultHandler(function (error, dom) {
+					console.log("4")
+					if (error) return next(error)
+				});
+				let parser = new htmlparser.Parser(handler);
+				parser.parseComplete(body);
 
-			const newMovie = new Movie(temp)
-			newMovie.save((err) => {
-				if (err) return next(err)
-				return res.json(newMovie)
+				console.log("5")
+				let poster = select(handler.dom, 'div.poster')
+				let link = select(poster, 'img')[0].attribs.src + ''
+				temp.poster = link
+				console.log(temp.poster)
+				movie = JSON.parse(movie)
+				temp.genre = movie.genres[0].name
+
+				const newMovie = new Movie(temp)
+				newMovie.save((err) => {
+					console.log(temp.poster)
+					if (err) return next(err)
+					return res.json(newMovie)
+				})
 			})
 		})
 	})
 }
-
-
-/*request.get('/movie', (req, res, next) => {
-	request.get({
-		url: 'moviedb'
-	}, (err, response, movie) => {
-		if (err) return next(err)
-		res.render('movie', {
-			title: movie.title,
-			
-		})
-	})
-})*/
