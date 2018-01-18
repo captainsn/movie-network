@@ -4,6 +4,7 @@ const request = require('request');
 const config = require('../app/models/config');
 
 
+
 /*=============================================
 =            Routes for users
 =============================================*/
@@ -44,9 +45,18 @@ router.get('/create', (req, res, next) => {
 =============================================*/
 
 router.post('/register', (req, res, next) => {
+  console.log("made it to register!!!!")
   request.post({
       url: config.apiUrl + '/users',
       form: req.body
+  }).pipe(res)
+})
+
+router.post('/login', (req, res, next) => {
+  console.log("hellooooooo")
+  request.post({
+    url: config.apiUrl + '/auth/login',
+    form: req.body
   }).pipe(res)
 })
 

@@ -13,8 +13,11 @@ function createPlaylist() {
 
 function submitUser() {
   var data = {}
-  if (form.email.value) data.email = form.email.value
   if (form.password.value) data.password = form.password.value
+  if (form.confirm.value) data.confirm = form.confirm.value
+  if (form.username.value) data.username = form.username.value
+  if (form.name.value) data.name = form.name.value 
+  if (form.email.value) data.email = form.email.value 
 
   if (!data.email) return displayError('Must provide email')
   if (!data.password) return displayError('Must provide password')
@@ -32,10 +35,13 @@ function submitUser() {
 }
 
 function submitLogin() {
+ console.log("jesusssssssss")
  var data = {
-    email: form.email.value,
+    username: form.username.value,
     password: form.password.value
   }
+  console.log(data)
+
   fetch('/login', {
     headers: {
       'Content-Type': 'application/json',
@@ -46,12 +52,12 @@ function submitLogin() {
     if (!res.ok) { alert('ERROR') }
     res.json()
     .then(function(data) {
-      alert(JSON.stringify(data))
       localStorage.token = data.token
       window.location.href ='/account'
     })
   }).catch(submitError)
 }
+
 
 /*=============================================
 =            Form Submit Callbacks            =
@@ -78,6 +84,7 @@ function submitSuccess(res) {
     var modal = document.getElementById('js-success');
     modal.style.display = 'block';
     clearForm();
+    window.location.href ='/login'
 }
 
 function submitError(res, message) {
