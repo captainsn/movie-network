@@ -53,6 +53,27 @@ function submitLogin() {
   }).catch(submitError)
 }
 
+function addToDatabase() {
+  var data = {
+    title: form.title.value
+  }
+  fetch('/add-to-db', {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
+  }).then(function(res) {
+    if (!res.ok) { alert('ERROR!') }
+    res.json()
+    .then(function(data) {
+      alert(JSON.stringify(data))
+      localStorage.token = data.token
+      window.location.href = '/account'
+    })
+  }).catch(submitError)
+}
+
 /*=============================================
 =            Form Submit Callbacks            =
 =============================================*/

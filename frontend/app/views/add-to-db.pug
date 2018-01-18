@@ -1,0 +1,16 @@
+extends template
+
+block content
+    #js-error-message.error-message
+    form          
+        .form-box(style='text-align:center')
+            h2 Add a movie to our database!
+            .fb-item
+                span Title
+                br
+                input(type='text' name='title' placeholder='******') 
+            button#submit(type='button' onclick='addToDatabase()') Submit
+
+    .modal#js-success
+        .modal-content
+            h2 Thank you for adding to our database!
