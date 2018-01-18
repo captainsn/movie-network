@@ -31,6 +31,10 @@ router.get('/browse', (req, res, next) => {
     return res.render('browse');
 });
 
+router.get('/movie', (req, res, next) => {
+    return res.render('movie');
+});
+
 /*=============================================
 =            Routes for playlists
 =============================================*/
