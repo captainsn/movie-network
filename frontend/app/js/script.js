@@ -1,5 +1,12 @@
 const form = document.forms[0]
 
+// function createPlaylist
+function createPlaylist() {
+  window.location.href ='/movie'
+}
+
+
+
 /*=============================================
 =            Form Submit Functions            =
 =============================================*/
