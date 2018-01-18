@@ -3,12 +3,14 @@ const jwt = require('jwt-simple');
 const config = require('../models/config');
 
 exports.loginUser = (req, res, next) => {
-    if (typeof req.body.email !== 'string')
-        return res.status(400).send('Missing email');
+    console.log("made it to here")
+
+    if (typeof req.body.username !== 'string')
+        return res.status(400).send('Missing username');
     if (typeof req.body.password !== 'string')
         return res.status(400).send('Missing password');
 
-    User.findOne({email: req.body.email}, (err, user) => {
+    User.findOne({username: req.body.username}, (err, user) => {
         if (err) return next(err);
         if (!user) return res.status(400).send('No user with that email');
         user.comparePassword(req.body.password, (err, isMatch) => {
@@ -19,7 +21,7 @@ exports.loginUser = (req, res, next) => {
             // add relevant data to token
             let payload = {
                 id: user._id,
-                email: user.email
+                username: user.username
             };
 
             let token = jwt.encode(payload, config.token_secret);
