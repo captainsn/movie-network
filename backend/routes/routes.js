@@ -45,7 +45,11 @@ router.route('/auth/login')
 */
 router.route('/users/:currentUserId/follow')
 	.post(users.followUser)
-	
+
+
+router.route('/movie')
+  .post(movies.makeMovieByImdb)
+
 /*
 * 
 */
