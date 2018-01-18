@@ -100,6 +100,10 @@ function displayError(message) {
     errorDiv.style.visibility = 'visible';
 }
 
+/*=============================================
+=            Browse Page            =
+=============================================*/
+
 document.getElementById("high-to-low").addEventListener("click",function(){
   sortItems("order");
 });
@@ -130,3 +134,94 @@ function sortItems(dataType,neg) {
   
   
 }
+
+
+$(".icon").click(function() {
+  var icon = $(this),
+      input = icon.parent().find("#search"),
+      submit = icon.parent().find(".submit"),
+      is_submit_clicked = false;
+  
+  // Animate the input field
+  input.animate({
+    "width": "165px",
+    "padding": "10px",
+    "opacity": 1
+  }, 300, function() {
+    input.focus();
+  });
+  
+  submit.mousedown(function() {
+    is_submit_clicked = true;
+  });
+  
+  // Now, we need to hide the icon too
+  icon.fadeOut(300);
+  
+  // Looks great, but what about hiding the input when it loses focus and doesnt contain any value? Lets do that too
+  input.blur(function() {
+    if(!input.val() && !is_submit_clicked) {
+      input.animate({
+        "width": "0",
+        "padding": "0",
+        "opacity": 0
+      }, 200);
+      
+      // Get the icon back
+      icon.fadeIn(200);
+    };
+  });
+});
+
+$(function() {  
+  $('.button')
+    .on('mouseenter', function(e) {
+      var parentOffset = $(this).offset(),
+          relX = e.pageX - parentOffset.left,
+          relY = e.pageY - parentOffset.top;
+      $(this).find('span').css({top:relY, left:relX})
+    })
+    .on('mouseout', function(e) {
+      var parentOffset = $(this).offset(),
+          relX = e.pageX - parentOffset.left,
+          relY = e.pageY - parentOffset.top;
+      $(this).find('span').css({top:relY, left:relX})
+    });
+  $('[href=#]').click(function(){return false});
+});
+
+/*=============================================
+=            Index Page            =
+=============================================*/
+
+$(function () {
+    // init
+    var controller = new ScrollMagic.Controller({
+        globalSceneOptions: {
+            triggerHook: 'onLeave'
+        }
+    });
+
+    // get all slides
+    var slides = document.querySelectorAll(".panel");
+
+    // create scene for every slide
+    for (var i=0; i<slides.length; i++) {
+        new ScrollMagic.Scene({
+                triggerElement: slides[i]
+            })
+            .setPin(slides[i], {pushFollowers: false})
+            .addTo(controller);
+    }
+
+    // fix navbar when scrolling
+    var banner = $('#nav-container');
+    new ScrollMagic.Scene({
+        triggerElement: '#section-web',
+        triggerHook: 'onCenter',
+        offset: -150
+    })
+        .setClassToggle(banner[0], 'fixed')
+        .setTween(banner[0], 0.3, {top: 0, ease: Power2.EaseIn})
+        .addTo(controller);
+});
