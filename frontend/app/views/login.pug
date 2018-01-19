@@ -10,15 +10,16 @@ block content
             a(href='/browse')
                 span browse
     .login-page
-      .form
-        .login-form
-            .lf-item
-                input(type="text" id="username" placeholder="username")
-                input(type="password" id="password" placeholder="password")
-                button(type='button' onclick='submitLogin()') Login
-                p
-                    .message
-                        span Not registered? 
+      form
+          .form
+            .login-form
+                .lf-item
+                    input(type="text" id="username" placeholder="username")
+                    input(type="password" id="password" placeholder="password")
+                    button(type='button' onclick='submitLogin()') Login
+                    p
+                        .message
+                            span Not registered? 
 
-                        a(href='/register') Create an account
+                            a(href='/register') Create an account
 

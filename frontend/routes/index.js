@@ -74,4 +74,15 @@ router.post('/login', (req, res, next) => {
   }).pipe(res)
 })
 
+router.get('/movie', (req, res, next) => {
+  console.log("made it to the movies DEUS DO CEU JESUS CRISTO")
+  request.get({
+    url: config.apiUrl + '/auth/login',
+  }, (err, response, body) => {
+      if (err) return next(err)
+      return res.render('broom', { items: body })
+    })
+})
+
+
 module.exports = router;

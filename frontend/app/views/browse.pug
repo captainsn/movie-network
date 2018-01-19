@@ -33,11 +33,7 @@ block content
 		button#high-to-low Top
 		button#low-to-high New
 		button#default Following
-	form.search(action='')
-			input#submit(value='', type='submit')
-			label.submit(for='submit')
-			a.icon(href='javascript: void(0)')
-			input#search(type='search', name='Search', placeholder='Search')
+
 	ul#grid
 		each val, index in newAry
 			li(class="sortable", data-order=val.order,data-default=index)
