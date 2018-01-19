@@ -22,6 +22,10 @@ router.get('/login', (req, res, next) => {
     return res.render('login');
 });
 
+router.get('/confirm', (req, res, next) => {
+    return res.render('confirm');
+});
+
 
 // router.get('/account', (req, res, next) => {
 //     return res.render('account');
@@ -92,7 +96,7 @@ router.get('/account', (req, res, next) => {
   }, (err, response, body) => {
       if (err) return next(err)
       console.log("returnnnn movie")
-      return res.render('movie', { movies: JSON.parse(body) })
+      return res.render('account', { movies: JSON.parse(body) })
     })
 })
 
