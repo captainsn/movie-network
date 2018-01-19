@@ -1,19 +1,24 @@
 extends template
 
 block content
+    #navbar
+        a(href='/')
+            span CINEFY
+        #nb-items
+            a(href='/browse')
+                span browse
     #js-error-message.error-message
     .login-page
-        form
-          .form
-            .login-form
-                .lf-item
-                    input(type="text" id="username" placeholder="Username")
-                    input(type="text" id="name" placeholder="Name")
-                    input(type='email' id="email" placeholder='example@gmail.com') 
-                    input(type='password' id='password' placeholder='Password')
-                    input(type='password' id='confirm' placeholder='Confirm Password') 
-                    button(type='button' onclick='submitUser()') Register
+      .form
+        .login-form
+            .lf-item
+                input(type="text" placeholder="Username")
+                input(type="text" placeholder="Name")
+                input(type='email' placeholder='example@gmail.com') 
+                input(type='password' name='password' placeholder='Password')
+                input(type='password' name='confirm' placeholder='Confirm Password') 
+                button(type='button' onclick='submitUser()') Register
 
-        .modal#js-success
-            .modal-content
-                h2 Thank you for registering!
+    .modal#js-success
+        .modal-content
+            h2 Thank you for registering!

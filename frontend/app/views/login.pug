@@ -1,17 +1,24 @@
 extends template
 
 block content
-    form
-        .login-page
-          .form
-            .login-form
-                .lf-item
-                    input(type="text" id="username" placeholder="username")
-                    input(type="password" id="password" placeholder="password")
-                    button(type='button' onclick='submitLogin()') Login
-                    p
-                        .message
-                            span Not registered? 
+    #navbar
+        a(href='/')
+            span CINEFY
+        #nb-items
+            a(href='/register')
+                span register
+            a(href='/browse')
+                span browse
+    .login-page
+      .form
+        .login-form
+            .lf-item
+                input(type="text" id="username" placeholder="username")
+                input(type="password" id="password" placeholder="password")
+                button(type='button' onclick='submitLogin()') Login
+                p
+                    .message
+                        span Not registered? 
 
-                            a(href='/register') Create an account
+                        a(href='/register') Create an account
 

@@ -1,11 +1,23 @@
 extends template
 
 block content
-    .createplaylist
-      .form
-        .create-form
-            .create-item
-                input(type="text" placeholder="playlist name")
-                input(type="text" placeholder="description")
+	#navbar
+		a(href='/')
+			span CINEFY
+		#nb-items
+			a(href='/register')
+				span register
+			a(href='/login')
+				span login
+			a(href='/browse')
+				span browse
+			a(href='/account')
+				span my account
+	.createplaylist
+		.form
+			.create-form
+				.create-item
+					input(type="text" placeholder="playlist name")
+					input(type="text" placeholder="description")
 
-                button(type='button' onclick='createPlaylist()') Add
+					button(type='button' onclick='createPlaylist()') Add

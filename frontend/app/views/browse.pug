@@ -10,6 +10,14 @@ extends template
 						td-//
 
 block content 
+	#navbar
+		a(href='/')
+			span CINEFY
+		#nb-items
+			a(href='/register')
+				span register
+			a(href='/account')
+				span my account
 	block content 
 	- var ratingAry = [{"rating":"1"},{"rating":"2"},{"rating":"3"},{"rating":"4"},{"rating":"5"},{"rating":"6"},{"rating":"7"},{"rating":"8"},{"rating":"9"},{"rating":"10"},{"rating":"0"},{"rating":"11"}]
 	- var newAry = ratingAry.slice(0);
@@ -20,7 +28,7 @@ block content
 		- ratingAry[i].order = i
 	- }
 	.button-wrapper
-		button#accountsubmit(type='button' onclick="location.href = '/create'") Create Playlist
+		button#browsesubmit(type='button' onclick="location.href = '/create'") Create Playlist
 	.button-wrapper
 		button#high-to-low Top
 		button#low-to-high New
@@ -34,5 +42,5 @@ block content
 		each val, index in newAry
 			li(class="sortable", data-order=val.order,data-default=index)
 				i.fa.fa-picture-o.fake-image
-				span.rating= "Playlist Name " + val.rating
+				span.rating= "Playlist " + val.rating
 	
