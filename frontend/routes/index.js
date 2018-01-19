@@ -23,17 +23,17 @@ router.get('/login', (req, res, next) => {
 });
 
 
-router.get('/account', (req, res, next) => {
-    return res.render('account');
-});
+// router.get('/account', (req, res, next) => {
+//     return res.render('account');
+// });
 
 router.get('/browse', (req, res, next) => {
     return res.render('browse');
 });
 
-router.get('/movie', (req, res, next) => {
-    return res.render('movie');
-});
+// router.get('/movie', (req, res, next) => {
+//     return res.render('movie');
+// });
 
 router.get('/add-to-db', (req, res, next) => {
     return res.render('add-to-db')
@@ -77,12 +77,23 @@ router.post('/login', (req, res, next) => {
 router.get('/movie', (req, res, next) => {
   console.log("made it to the movies DEUS DO CEU JESUS CRISTO")
   request.get({
-    url: config.apiUrl + '/auth/login',
+    url: config.apiUrl + '/movies/posters',
   }, (err, response, body) => {
       if (err) return next(err)
-      return res.render('broom', { items: body })
+      console.log("returnnnn movie")
+      return res.render('movie', { movies: JSON.parse(body) })
     })
 })
 
+router.get('/account', (req, res, next) => {
+  console.log("made it to account DIOS DIOS DIOS DIOS")
+  request.get({
+    url: config.apiUrl + '/movies/posters',
+  }, (err, response, body) => {
+      if (err) return next(err)
+      console.log("returnnnn movie")
+      return res.render('movie', { movies: JSON.parse(body) })
+    })
+})
 
 module.exports = router;
