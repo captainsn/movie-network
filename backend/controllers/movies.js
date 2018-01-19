@@ -119,7 +119,12 @@ exports.getMoviePoster = (req, res, next) => {
 exports.getAllPosters = (req, res, next) => {
 	Movie.find({}, (err, movies) => {
 		if (err) return next(err)
-		const temp = movies.map(movie => movie.poster)
+		const temp = movies.map(movie => {
+			let obj = {}
+			obj.poster = movie.poster
+			obj.id = movie._id
+			return obj
+		})
 		return res.json(temp)
 	})
 }
